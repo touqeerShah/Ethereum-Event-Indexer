@@ -1,0 +1,40 @@
+{
+    "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258": {
+        "Name": "Paused",
+        "Parameters": [{ "account": " address" }],
+        "Index": []
+    },
+    "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa": {
+        "Name": "Unpaused",
+        "Parameters": [{ "account": " address" }],
+        "Index": []
+    },
+    "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8": {
+        "Name": "PauserAdded",
+        "Parameters": [{ "account": " address" }],
+        "Index": ["account"]
+    },
+    "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e": {
+        "Name": "PauserRemoved",
+        "Parameters": [{ "account": " address" }],
+        "Index": ["account"]
+    },
+    "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+        "Name": "Transfer",
+        "Parameters": [
+            { "from": " address" },
+            { "to": " address" },
+            { "value": " uint256" }
+        ],
+        "Index": ["from", "to"]
+    },
+    "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
+        "Name": "Approval",
+        "Parameters": [
+            { "owner": " address" },
+            { "spender": " address" },
+            { "value": " uint256" }
+        ],
+        "Index": ["owner", "spender"]
+    }
+}
