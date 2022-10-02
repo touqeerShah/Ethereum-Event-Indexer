@@ -26,4 +26,12 @@ https://docs.alchemy.com/reference/eth-subscribe
 ## Steps
 
 1. Copy ABI in Config folder.
-2.
+2. Run postgressDB with Docker
+
+```
+cd pg-compose
+docker-compose up -d
+
+```
+
+3. Run `node init.js ` inside utils folder it will covert ABI into to ABI siginature in config folder `event_signature.json` and create table for every Event and it Indexing
