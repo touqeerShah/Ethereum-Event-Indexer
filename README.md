@@ -10,7 +10,7 @@ https://docs.alchemy.com/reference/eth-subscribe
 
 1. We will connect to Ethereum with help Alchemy RPC (used filter to get only those transation which are belong to contract which we want to track)
 2. Connect to DB who have different Table
-   2.1 Blockchain info (ChainName,ChainID,blockNumber,Total Amount Transfer) `blockNumber it will help us to know where to start get logs and where we left when service close`
+   2.1 Blockchain Event info (ChainName,ChainID,blockNumber,Total Amount Transfer) `blockNumber it will help us to know where to start get logs and where we left when service close`
    2.2 Tables With Event Name , their fields which we store and Do index on data
 3. Once we connect and get logs it time to get event signature and convert the values (data and topics).
 4. Time to Store Them into DB and Index the data.
@@ -22,3 +22,8 @@ https://docs.alchemy.com/reference/eth-subscribe
 
 1. Nodejs (express Server)
 2. Postgress Database (with Docker)
+
+## Steps
+
+1. Copy ABI in Config folder.
+2.

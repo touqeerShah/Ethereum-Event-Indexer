@@ -7,11 +7,11 @@ var { configObj } = require("../config/config.js");
  */
 try {
     const pool = new Pool({
-        user: configObj.PG_USER,
-        database: configObj.PG_DB,
-        password: configObj.PG_PASS,
-        port: configObj.PG_PORT,
-        host: configObj.PG_ADDRESS,
+        user: configObj.POSTGRESSDB_USER,
+        database: configObj.POSTGRESSDB_DB,
+        password: configObj.POSTGRESSDB_PASS,
+        port: configObj.POSTGRESSDB_PORT,
+        host: configObj.POSTGRESSDB_ADDRESS,
     });
     module.exports = { pool };
 } catch (error) {
