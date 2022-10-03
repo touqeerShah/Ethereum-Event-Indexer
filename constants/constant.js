@@ -1,9 +1,10 @@
 module.exports.basicTableStructure = (table, addtionalFields) => {
     return `CREATE TABLE IF NOT EXISTS ${table} (
-	    "transactionId" VARCHAR(40) NOT NULL,
-        "blockNumber" VARCHAR(40) NOT NULL,
+	    "transactionHash" VARCHAR(70) NOT NULL,
+        "contractAddress" VARCHAR(70) NOT NULL,
+        "blockNumber" Numeric NOT NULL,
 	    ${addtionalFields}
-	    PRIMARY KEY ("transactionId")
+	    PRIMARY KEY ("transactionHash")
     );`;
 };
 
@@ -24,4 +25,34 @@ module.exports.eventListed = `
 module.exports.insertEventListed = insertEventListed = (configObj) => {
     return `INSERT INTO public."eventListed" ("chainId", "chainName", "contractAddress", "startBlockNumber","totalAmountTransfer")
     VALUES ('${configObj.CHAIN_ID}', '${configObj.CHAIN_NAME}', '${configObj.CONTRACT_ADDRESS}', ${configObj.STRARTFROM},0)`;
+};
+
+module.exports.getStartingBlock = getStartingBlock = (contractAddress) => {
+    return `select el."startBlockNumber"  from public."eventListed" el where "contractAddress" like '${contractAddress}'`;
+};
+
+module.exports.basicInsertStructure = (table, addtionalFields, values) => {
+    return `INSERT INTO ${table} (
+	    "transactionHash" ,
+        "contractAddress",
+        "blockNumber",
+	    ${addtionalFields}
+    ) VALUES (${values})`;
+};
+
+module.exports.updateStartBlock = (startBlockNumber, contractAddress) => {
+    return `UPDATE public."eventListed"
+    SET "startBlockNumber"=${startBlockNumber}
+    WHERE  "contractAddress" like '${contractAddress}';
+    `;
+};
+
+module.exports.updateTotalAmountTransfer = (
+    newAmountTransfer,
+    contractAddress
+) => {
+    return `UPDATE public."eventListed" el 
+    SET "totalAmountTransfer"= "totalAmountTransfer"+${newAmountTransfer} 
+    where "contractAddress" like '${contractAddress}';
+    `;
 };

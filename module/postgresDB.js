@@ -17,3 +17,19 @@ try {
 } catch (error) {
     console.log("Error To connect PG try again after 5 second");
 }
+
+module.exports.execute = async (query, pool) => {
+    var response = {};
+    try {
+        var result = await pool.query(query); // sends queries
+        response["result"] = result;
+        response["status"] = true;
+
+        return response;
+    } catch (error) {
+        // console.error(error.stack);
+        response["result"] = {};
+        response["status"] = false;
+        return response;
+    }
+};

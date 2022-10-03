@@ -7,7 +7,6 @@ var {
 } = require("../constants/constant");
 var event_signature = require("../config/event_signature.json");
 var { configObj } = require("../config/config");
-const e = require("express");
 const execute = async (query) => {
     try {
         await pool.query(query); // sends queries
@@ -16,9 +15,6 @@ const execute = async (query) => {
         // console.error(error.stack);
         return false;
     }
-    // finally {
-    //     // await pool.end(); // closes connection
-    // }
 };
 module.exports.CreateTables = async () => {
     try {
