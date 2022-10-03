@@ -3,17 +3,20 @@ var abi = require("../../config/abi");
 const fs = require("fs");
 var abiSigaturePath = "./../config/event_signature.json";
 var utils = ethers.utils;
-// var bytesArrary = utils.toUtf8Bytes("");
-// var signature = utils.keccak256(bytesArrary);
+
+/**
+ * This function is user to get the ABI and convert them into it Signature
+ * Which we used into create table and do transactions
+ */
 module.exports.setupABISignature = async () => {
     var allEvent = abi.contractAbi.filter(function (el) {
+        // here we get only those object whose type is Event from ABI
         return el.type == "event";
     });
 
     var eventSingature = {};
-    // console.log("allEvent == ", allEvent);
 
-    // {"singature":{"Name":"","Parameters":{"field1":"type1"},"Index":["field1","feild2"]}
+    // {"singature":{"Name":"","fieldsName":[],"fieldsType":[],"Index":["field1","feild2"]}
     console.log("Found ", allEvent.length + " Number Of Event in ABI");
     console.log("Start Create Event Signature ....");
 
@@ -27,6 +30,7 @@ module.exports.setupABISignature = async () => {
         tem["fieldsType"] = [];
         tem["Index"] = [];
         event.inputs.forEach((input) => {
+            // here we create event object to signature based object
             tem["fieldsName"].push(input.name);
             tem["fieldsType"].push(input.type);
             if (isComma) {
@@ -38,11 +42,11 @@ module.exports.setupABISignature = async () => {
             isComma = true;
         });
         functionSignature += ")";
-        console.log("functionSignature", functionSignature);
+        console.log("functionSignature", functionSignature); //
         var bytesArrary = utils.toUtf8Bytes(functionSignature);
-        var signature = utils.keccak256(bytesArrary);
+        var signature = utils.keccak256(bytesArrary); // Transfer(address,address,unit256) -> function signature
         eventSingature[signature] = tem;
     });
-    fs.writeFileSync(abiSigaturePath, JSON.stringify(eventSingature));
+    fs.writeFileSync(abiSigaturePath, JSON.stringify(eventSingature)); // once it done put them into file so we can used them
     console.log("Finish Create Event Signature .... Path", abiSigaturePath);
 };

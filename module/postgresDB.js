@@ -17,7 +17,12 @@ try {
 } catch (error) {
     console.log("Error To connect PG try again after 5 second");
 }
-
+/**
+ * This help as to execute Query in DB
+ * @param {*} query
+ * @param {*} pool
+ * @returns
+ **/
 module.exports.execute = async (query, pool) => {
     var response = {};
     try {

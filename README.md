@@ -52,3 +52,4 @@ curl --location --request GET 'http://localhost:8080/api/verifyHash?transactionH
 4. `event` it have logic related to Convert ABI to it signature ,Get event logs from blockchain Decode the logs values and store them into DB
 5. `module` it have logic related to DB connection and Query Execution.
 6. `utils` it have logic related setup everything like create ABI signature and used that ABI signature to create table, index and function.
+7. `pg-compose` this where we have compose file of DB with docker
