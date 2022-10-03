@@ -1,10 +1,27 @@
-var { pool } = require("../module/postgresDB");
+var { pool, execute } = require("../module/postgresDB");
+var { getTotalAmountTransfer } = require("./../constants/constant");
+var { configObj } = require("../config/config");
 
 module.exports.getTotalAmount = async (req, res) => {
-    const res = await pool.query(
-        "SELECT * FROM EvonikEvent where transactionId = $1",
-        [eventObject.transactionId]
+    await pool.connect(); // gets connection
+    var response = await execute(
+        getTotalAmountTransfer(configObj.CONTRACT_ADDRESS),
+        pool
     );
-    console.log("Query => ", res.rowCount);
+    if (response.status) {
+        response.result = response.result.rows[0].totalAmountTransfer;
+    }
+
+    res.send(response);
 };
-module.exports.verifyHash = async (req, res) => {};
+module.exports.verifyHash = async (req, res) => {
+    await pool.connect(); // gets connection
+    var response = await execute(
+        getSearchTransacationHash(req.query.transactionHash),
+        pool
+    );
+    if (response.status) {
+        response.result = response.result.rows[0];
+    }
+    res.send(response);
+};

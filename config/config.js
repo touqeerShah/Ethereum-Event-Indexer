@@ -12,5 +12,6 @@ module.exports.configObj = {
     CHAIN_ID: process.env.CHAIN_ID,
     CHAIN_NAME: process.env.CHAIN_NAME,
     STRARTFROM: process.env.STRARTFROM,
-    ALCHEMY_APIKEY: process.env.ALCHEMY_APIKEY,
+    INFURA_APIKEY: process.env.INFURA_APIKEY,
+    TRANSFER_SIGNATURE: process.env.TRANSFER_SIGNATURE,
 };

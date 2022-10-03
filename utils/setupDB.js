@@ -4,6 +4,7 @@ var {
     basicIndexStructure,
     eventListed,
     insertEventListed,
+    setSearchColumeFunction,
 } = require("../constants/constant");
 var event_signature = require("../config/event_signature.json");
 var { configObj } = require("../config/config");
@@ -84,6 +85,12 @@ module.exports.CreateTables = async () => {
         });
     }
     // await pool.end();
+    console.log("Creating Search colume Function on Table ....");
+    await execute(setSearchColumeFunction).then(async (result) => {
+        if (result) {
+            console.log("Search colume Function created");
+        }
+    });
     console.log("Done");
     process.exit(0);
 };
