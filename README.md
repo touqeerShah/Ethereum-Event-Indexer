@@ -40,7 +40,10 @@ docker-compose up -d
 ```
 ## getTotalAmount
 curl --location --request GET 'http://localhost:8080/api/getTotalAmount'
-## verifyHash
+## verifyHashDB This will check from Database which we store with program blockchain that transaction hash exist
+curl --location --request GET 'http://localhost:8080/api/verifyHashDB?transactionHash=0x320b95cef4c3cfe7ffca91f8bd9e5734cdba99cafc430004a50b9f553194929b'
+
+## verifyHash This will check from real blockchain that transaction hash exist
 curl --location --request GET 'http://localhost:8080/api/verifyHash?transactionHash=0x320b95cef4c3cfe7ffca91f8bd9e5734cdba99cafc430004a50b9f553194929b'
 ```
 
